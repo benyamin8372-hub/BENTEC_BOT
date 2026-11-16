@@ -1,0 +1,17 @@
+services:
+  - type: worker
+    name: bentech-news-weather
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: DB_PATH
+        value: /var/data/bentech.sqlite3
+    disk:
+      name: bentech-data
+      mountPath: /var/data
+      sizeGB: 1
